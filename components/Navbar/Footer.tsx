@@ -1,13 +1,31 @@
 import Link from 'next/link';
 import React from 'react';
-import { footerList, navLinks, socialMedia } from '../../constants/shared';
+import { navLinks, socialMedia } from '../../constants/shared';
 import Container from '../Layouts/Container';
+
+import { CheckBadgeIcon, InboxIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
 const boxClasses = 'flex flex-col gap-5 basis-1/3';
 const headerClasses = 'font-semibold text-h2';
 const listClasses = 'flex flex-col gap-2';
 
 const Footer = () => {
+	const iconClasses = 'w-8 h-8';
+
+	const footerList = [
+		{
+			value: 'info@perspective-video.cz',
+			icon: <InboxIcon className={iconClasses} />,
+		},
+		{
+			value: '+420 608 813 049',
+			icon: <PhoneIcon className={iconClasses} />,
+		},
+		{
+			value: 'IČ: 08874867',
+			icon: <CheckBadgeIcon className={iconClasses} />,
+		},
+	];
 	return (
 		<footer className="bg-primary-blue text-white">
 			<Container customStyles="flex flex-col justify-between items-start lg:flex-row gap-10">

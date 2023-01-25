@@ -1,6 +1,6 @@
 import { CheckBadgeIcon, InboxIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
-const iconClasses = 'w-8 h-8';
+export const iconClasses = 'w-8 h-8';
 
 export const footerList = [
 	{
