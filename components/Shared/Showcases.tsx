@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
+import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -10,11 +11,14 @@ interface ShowcasesProps {
 
 const Showcases: React.FC<ShowcasesProps> = ({ showcases }) => {
 	return (
-		<div className="flex flex-col lg:flex-row items-center justify-between gap-5">
-			{showcases.map(({ url, img, title }) => (
-				<div key={title} className="relative group overflow-hidden">
+		<div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row items-center justify-between gap-5">
+			{showcases?.map(({ url, img, title }, index) => (
+				<div
+					key={title}
+					className={classNames('relative group overflow-hidden', index === 2 && 'col-span-2')}
+				>
 					<Link href={url} target="_blank">
-						<Image src={img} alt={title} width={600} height={600} />
+						<Image src={img} alt={title} width={800} height={600} />
 
 						<div className="absolute inset-0 bg-gradient-to-t from-black group-hover:bg-black opacity-40 duration-300" />
 
