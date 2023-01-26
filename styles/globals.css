@@ -15,8 +15,9 @@
     .gradientBg {
       background: -webkit-linear-gradient(0deg,#04aadd 20%,#03afe4 50%,#01c4ff 80%);
   }
+
   .hoverButton {
-    @apply hover:bg-sky-600 transition-colors ease-in-out
+    @apply hover:bg-sky-600  transition-all ease-in-out
   }
 
   .title {

@@ -34,6 +34,12 @@ export interface BannerInfo {
   img: string;
 }
 
+export interface ContactComponent {
+  buttonText: string;
+  title: string;
+  description: string;
+}
+
 //
 //
 //
@@ -53,6 +59,7 @@ export interface PromoData {
 export interface PromoVidea {
   promoVideaData: PromoData;
   sharedBannerData: BannerInfo;
+  contactCompData: ContactComponent;
 }
 export interface SquareData {
   name: string;

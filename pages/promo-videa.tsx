@@ -6,6 +6,7 @@ import Container from '../components/Layouts/Container';
 import useMobileWidth from '../components/Layouts/isMobile';
 import Banner from '../components/Shared/Banner';
 import BannerInfo from '../components/Shared/BannerInfo';
+import ContactMe from '../components/Shared/ContactMe';
 import ReasonsBoxes from '../components/Shared/ReasonsBoxes';
 import Showcases from '../components/Shared/Showcases';
 import { db } from '../firebase';
@@ -23,7 +24,7 @@ interface SvatbyProps {
 
 const Promo: React.FC<SvatbyProps> = ({ data }) => {
 	const { showcases, banner, expectation, youtubeReview, reasonsBoxes } = data.promoVideaData;
-	const { sharedBannerData } = data;
+	const { sharedBannerData, contactCompData } = data;
 	const { isMobile } = useMobileWidth();
 
 	return (
@@ -80,27 +81,35 @@ const Promo: React.FC<SvatbyProps> = ({ data }) => {
 				{reasonsBoxes && (
 					<ReasonsBoxes title={reasonsBoxes?.title} reasons={reasonsBoxes?.reasons} />
 				)}
+				{contactCompData && (
+					<ContactMe
+						title={contactCompData.title}
+						description={contactCompData.description}
+						buttonText={contactCompData.buttonText}
+					/>
+				)}
 			</Container>
 		</Background>
 	);
 };
 
 export async function getStaticProps() {
-	const [promoVideaSnapshot, sharedBannerSnapshot] = await Promise.allSettled([
+	const [promoVideaSnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
 		getDoc(doc(db, 'promo-videa', 'layout')),
 		getDoc(doc(db, 'shared', 'bannerInfo')),
+		getDoc(doc(db, 'shared', 'contactComponent')),
 	]);
 
-	const promoVideaData =
-    promoVideaSnapshot.status === 'fulfilled' ? promoVideaSnapshot.value.data() : {};
-	const sharedBannerData =
-    sharedBannerSnapshot.status === 'fulfilled' ? sharedBannerSnapshot.value.data() : {};
+	const promoVideaData = promoVideaSnapshot.data();
+	const sharedBannerData = sharedBannerSnapshot.data();
+	const contactCompData = contactComponentSnapshot.data();
 
 	return {
 		props: {
 			data: {
 				promoVideaData,
 				sharedBannerData,
+				contactCompData,
 			},
 		},
 	};

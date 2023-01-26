@@ -5,6 +5,7 @@ import Loader from '../Assets/Loader';
 
 interface ButtonProps {
   children: React.ReactNode;
+  isTransparent?: boolean;
   isSubmit?: boolean;
   loading?: boolean;
   onClick?: () => void;
@@ -24,17 +25,14 @@ const Button: React.FC<ButtonProps> = ({
 	href,
 	mouseEnter,
 }) => {
+	const sharedClass = classNames(
+		'bg-primary-blue text-primary-white hoverButton p-3 px-6 min-w-[300px] rounded-sm flex items-center justify-center whitespace-nowrap',
+		customStyles,
+	);
+
 	return href ? (
 		<Link href={href}>
-			<button
-				onMouseEnter={mouseEnter && mouseEnter}
-				disabled={disabled}
-				className={classNames(
-					'bg-primary-blue p-3 px-6 w-full text-primary-white rounded-sm flex items-center justify-center whitespace-nowrap hoverButton',
-
-					customStyles,
-				)}
-			>
+			<button onMouseEnter={mouseEnter && mouseEnter} disabled={disabled} className={sharedClass}>
 				{loading ? <Loader /> : children}
 			</button>
 		</Link>
@@ -43,11 +41,7 @@ const Button: React.FC<ButtonProps> = ({
 			disabled={disabled}
 			onClick={onClick && onClick}
 			type={isSubmit ? 'submit' : 'button'}
-			className={classNames(
-				'bg-primary-blue p-3 px-6 w-full text-primary-white rounded-sm flex items-center justify-center whitespace-nowrap hoverButton',
-
-				customStyles,
-			)}
+			className={sharedClass}
 		>
 			{loading ? <Loader /> : children}
 		</button>

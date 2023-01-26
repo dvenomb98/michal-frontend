@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React from 'react';
 import { navLinks, socialMedia } from '../../constants/shared';
 import Container from '../Layouts/Container';
-
 import { CheckBadgeIcon, InboxIcon, PhoneIcon } from '@heroicons/react/24/outline';
 
 const boxClasses = 'flex flex-col gap-5 basis-1/3';
@@ -60,14 +59,18 @@ const Footer = () => {
 					<h2 className={headerClasses}>Sociální média</h2>
 
 					<ul className={listClasses}>
-						{socialMedia?.map(({ value, label }) => (
+						{socialMedia?.map(({ value, label, icon }) => (
 							<Link key={value} href={value} target="_blank">
-								<li className="font-light p-2">{label}</li>
+								<div className="flex items-center gap-5">
+									{icon}
+									<li className="font-light p-2">{label}</li>
+								</div>
 							</Link>
 						))}
 					</ul>
 				</div>
 			</Container>
+			<p className="text-center text-sm py-3 w-full border-t">Copyright © 2023 Daniel Bílek.</p>
 		</footer>
 	);
 };
