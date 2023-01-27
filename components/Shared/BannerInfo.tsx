@@ -28,12 +28,8 @@ const BannerInfo: React.FC<BannerInfoProps> = ({ data }) => {
 					</ul>
 					<div className="flex flex-col gap-5 w-full lg:w-3/5 ">
 						<Button href="/kdojsem">Poznejte mě</Button>
-						<a
-							href="https://www.perspective-video.cz/promovidea.html"
-							target={'_blank'}
-							rel={'noreferrer'}
-						>
-							<Button isTransparent>Čím natáčím</Button>
+						<a href="https://kit.co/perspective_video" target={'_blank'} rel={'noreferrer'}>
+							<Button>Čím natáčím</Button>
 						</a>
 					</div>
 				</div>

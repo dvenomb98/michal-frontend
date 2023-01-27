@@ -5,7 +5,6 @@ import Loader from '../Assets/Loader';
 
 interface ButtonProps {
   children: React.ReactNode;
-  isTransparent?: boolean;
   isSubmit?: boolean;
   loading?: boolean;
   onClick?: () => void;

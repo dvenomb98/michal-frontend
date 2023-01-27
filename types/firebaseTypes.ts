@@ -5,7 +5,8 @@
 //
 export interface BannerData {
   title: string;
-  img: string;
+  img?: string;
+  video?: string;
 }
 
 export interface Showcases {
@@ -40,6 +41,17 @@ export interface ContactComponent {
   description: string;
 }
 
+export interface PriceList {
+  title: string;
+  description: string;
+  price: string;
+}
+
+export interface FaqTypes {
+  question: string;
+  answer: string;
+}
+
 //
 //
 //
@@ -54,10 +66,27 @@ export interface PromoData {
   expectation: string[];
   youtubeReview: YoutubeReview;
   reasonsBoxes: ReasonBoxes;
+  plainText: string[];
 }
 
 export interface PromoVidea {
   promoVideaData: PromoData;
+  sharedBannerData: BannerInfo;
+  contactCompData: ContactComponent;
+}
+
+export interface SvatbyData {
+  banner: BannerData;
+  showcases: Showcases[];
+  reasonsBoxes: ReasonBoxes;
+  plainText: string[];
+  references: string[];
+  priceList: PriceList[];
+  faq: FaqTypes[];
+}
+
+export interface SvatbyPage {
+  svatbyData: SvatbyData;
   sharedBannerData: BannerInfo;
   contactCompData: ContactComponent;
 }

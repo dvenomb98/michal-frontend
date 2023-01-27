@@ -18,9 +18,9 @@ const Showcases: React.FC<ShowcasesProps> = ({ showcases }) => {
 					className={classNames('relative group overflow-hidden', index === 2 && 'col-span-2')}
 				>
 					<Link href={url} target="_blank">
-						<Image src={img} alt={title} width={800} height={600} />
+						<Image src={img} alt={title} width={800} height={600} className="rounded-sm" />
 
-						<div className="absolute inset-0 bg-gradient-to-t from-black group-hover:bg-black opacity-40 duration-300" />
+						<div className="absolute inset-0 bg-gradient-to-t from-black group-hover:bg-black opacity-40 duration-300 rounded-sm" />
 
 						<p className="absolute bottom-5 left-5 text-white font-semibold text-h3 transform group-hover:-translate-y-5 duration-300">
 							{title}

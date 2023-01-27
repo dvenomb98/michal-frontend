@@ -7,6 +7,7 @@ import useMobileWidth from '../components/Layouts/isMobile';
 import Banner from '../components/Shared/Banner';
 import BannerInfo from '../components/Shared/BannerInfo';
 import ContactMe from '../components/Shared/ContactMe';
+import PlainText from '../components/Shared/PlainText';
 import ReasonsBoxes from '../components/Shared/ReasonsBoxes';
 import Showcases from '../components/Shared/Showcases';
 import { db } from '../firebase';
@@ -16,24 +17,24 @@ interface SvatbyProps {
   data: PromoVidea;
 }
 
-// useEffect(() => {
+// 	useEffect(() => {
 
-// 	setDoc(doc(db, "promo-videa", "layout"), upload, {merge: true});
+// 	setDoc(doc(db, "svatby", "layout"), XXX, {merge: true});
 
 //  }, [])
 
 const Promo: React.FC<SvatbyProps> = ({ data }) => {
-	const { showcases, banner, expectation, youtubeReview, reasonsBoxes } = data.promoVideaData;
+	const { showcases, banner, expectation, youtubeReview, reasonsBoxes, plainText } =
+    data.promoVideaData;
 	const { sharedBannerData, contactCompData } = data;
 	const { isMobile } = useMobileWidth();
 
 	return (
 		<Background>
-			{/* Banner */}
-			<Banner image={banner?.img} title={banner?.title} />
+			<Banner image={banner?.img!} title={banner?.title} />
 			<Container customStyles="sharedLayout">
-				{/* Ukázky */}
 				{showcases?.length && <Showcases showcases={showcases} />}
+				{plainText?.length && <PlainText texts={plainText} />}
 
 				{/* Co ode mně můžete čekat? Video genereujeme z public folderu */}
 				{expectation?.length && (
@@ -74,10 +75,9 @@ const Promo: React.FC<SvatbyProps> = ({ data }) => {
 					</div>
 				)}
 			</Container>
-			{/* Banner Info*/}
+
 			{sharedBannerData && <BannerInfo data={sharedBannerData} />}
 			<Container customStyles="sharedLayout">
-				{/* Duvody PROČ  */}
 				{reasonsBoxes && (
 					<ReasonsBoxes title={reasonsBoxes?.title} reasons={reasonsBoxes?.reasons} />
 				)}
