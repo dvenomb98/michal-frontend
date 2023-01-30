@@ -19,7 +19,9 @@ const Faq: React.FC<FaqProps> = ({ faqComponent }) => {
 							<div className="flex flex-col">
 								<Disclosure.Button className=" w-full flex text-left bg-secondary-white hover:bg-sky-100/50 transition ease-in-out p-5 justify-between items-center rounded-sm">
 									{question}
-									<ChevronDownIcon className={classNames('w-5 h-5', open && 'rotate-180')} />
+									<ChevronDownIcon
+										className={classNames('w-5 h-5 transform duration-200', open && 'rotate-180')}
+									/>
 								</Disclosure.Button>
 								<Transition
 									enter="transition duration-200 ease-in"

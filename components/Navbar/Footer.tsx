@@ -7,10 +7,9 @@ import { CheckBadgeIcon, InboxIcon, PhoneIcon } from '@heroicons/react/24/outlin
 const boxClasses = 'flex flex-col gap-5 basis-1/3';
 const headerClasses = 'font-semibold text-h2';
 const listClasses = 'flex flex-col gap-2';
+export const iconClasses = 'w-8 h-8';
 
 const Footer = () => {
-	const iconClasses = 'w-8 h-8';
-
 	const footerList = [
 		{
 			value: 'info@perspective-video.cz',

@@ -95,3 +95,14 @@ export interface SquareData {
   url: string;
   img: string;
 }
+export interface EventyData {
+  banner: BannerData;
+  showcases: Showcases[];
+  reasonsBoxes: ReasonBoxes;
+  plainText: string[];
+}
+export interface EventyPage {
+  eventyData: EventyData;
+  sharedBannerData: BannerInfo;
+  contactCompData: ContactComponent;
+}
