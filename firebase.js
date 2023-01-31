@@ -3,12 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyA-8ky6Xh0zRtfyGNNepNHaRs0PuPsJ004',
-	authDomain: 'michal-backend.firebaseapp.com',
-	projectId: 'michal-backend',
-	storageBucket: 'michal-backend.appspot.com',
-	messagingSenderId: '968599058899',
-	appId: '1:968599058899:web:81ef5a69b290c67cc39726',
+	apiKey: process.env.API_KEY,
+	authDomain: process.env.AUTH_DOMAIN,
+	projectId: process.env.PROJECT_ID,
+	storageBucket: process.env.STORAGE_BUCKET,
+	messagingSenderId: process.env.MESSAGING_SENDER_ID,
+	appId: process.env.APP_ID,
 };
 
 // Initialize Firebase

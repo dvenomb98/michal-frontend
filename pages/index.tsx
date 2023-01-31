@@ -44,9 +44,9 @@ const Square: FC<SquareProps> = ({ data }) => {
 						key={`${name}_${index}`}
 						href={url}
 						mouseEnter={() => selectedImg !== img && handleMouseEnter(img)}
-						customStyles="px-10 py-5"
+						customStyles={'py-5 bg-primary-blue/60'}
 					>
-						<span className="text-h1">{name}</span>
+						<span className="text-h3">{name}</span>
 					</Button>
 				))}
 			</div>

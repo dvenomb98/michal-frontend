@@ -56,7 +56,10 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
 
 			<div className="flex items-center w-full h-auto lg:w-[600px] gap-5">
 				{!isMobile && (
-					<ChevronLeftIcon onClick={(e: any) => handleArrows(e, 'LEFT')} className="w-16 h-16" />
+					<ChevronLeftIcon
+						onClick={(e: any) => handleArrows(e, 'LEFT')}
+						className="w-16 h-16 cursor-pointer"
+					/>
 				)}
 				<div ref={sliderRef} className="keen-slider lg:shadow-xl">
 					{images?.map((image, index) => (
@@ -72,7 +75,10 @@ const Slider: React.FC<SliderProps> = ({ images }) => {
 				</div>
 
 				{!isMobile && (
-					<ChevronRightIcon onClick={(e: any) => handleArrows(e, 'RIGHT')} className="w-16 h-16" />
+					<ChevronRightIcon
+						onClick={(e: any) => handleArrows(e, 'RIGHT')}
+						className="w-16 h-16 cursor-pointer"
+					/>
 				)}
 			</div>
 		</div>

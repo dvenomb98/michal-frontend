@@ -7,6 +7,8 @@ import { ArrowLongRightIcon, Bars4Icon } from '@heroicons/react/24/outline';
 import useMobileWidth from '../Layouts/isMobile';
 import { Popover } from '@headlessui/react';
 import { navLinks } from '../../constants/shared';
+import perspective_logo from '../../public/icons/perspective_logo.png';
+import Image from 'next/image';
 
 const Navbar = () => {
 	const { isMobile } = useMobileWidth();
@@ -15,7 +17,14 @@ const Navbar = () => {
 		<Background>
 			<Container customStyles="py-8 flex justify-between items-center">
 				<>
-					<p>Perspective</p>
+					<Link href="/">
+						<Image
+							src={perspective_logo}
+							width={isMobile ? 40 : 80}
+							height={isMobile ? 40 : 80}
+							alt="Logo"
+						/>
+					</Link>
 					{!isMobile && (
 						<ul className="flex flex-row gap-10 items-center">
 							{navLinks?.map(({ value, label }) => (
