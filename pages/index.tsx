@@ -5,8 +5,8 @@ import { SquareData } from '../types/firebaseTypes';
 import { FC, useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
-import { logEvent } from 'firebase/analytics';
-import { analytics } from '../firebase';
+// import { logEvent } from 'firebase/analytics';
+// import { analytics } from '../firebase';
 
 interface SquareProps {
   data: SquareData[];
@@ -47,7 +47,7 @@ const Square: FC<SquareProps> = ({ data }) => {
 						href={url}
 						mouseEnter={() => selectedImg !== img && handleMouseEnter(img)}
 						customStyles={'py-5 bg-primary-blue/60'}
-						onClick={() => (analytics ? logEvent(analytics, name) : {})}
+						// onClick={() => (analytics ? logEvent(analytics, name) : {})}
 					>
 						<span className="text-h3">{name}</span>
 					</Button>
