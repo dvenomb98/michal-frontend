@@ -31,7 +31,12 @@ const Button: React.FC<ButtonProps> = ({
 
 	return href ? (
 		<Link href={href}>
-			<button onMouseEnter={mouseEnter && mouseEnter} disabled={disabled} className={sharedClass}>
+			<button
+				onClick={onClick && onClick}
+				onMouseEnter={mouseEnter && mouseEnter}
+				disabled={disabled}
+				className={sharedClass}
+			>
 				{loading ? <Loader /> : children}
 			</button>
 		</Link>

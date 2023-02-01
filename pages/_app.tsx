@@ -7,6 +7,7 @@ import Footer from '../components/Navbar/Footer';
 
 export default function App({ Component, pageProps }: AppProps) {
 	const { pathname } = useRouter();
+
 	return (
 		<>
 			{pathname !== '/' && <Navbar />}
