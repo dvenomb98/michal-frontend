@@ -20,8 +20,8 @@ const Navbar = () => {
 					<Link href="/">
 						<Image
 							src={perspective_logo}
-							width={isMobile ? 40 : 80}
-							height={isMobile ? 40 : 80}
+							width={isMobile ? 50 : 80}
+							height={isMobile ? 50 : 80}
 							alt="Logo"
 						/>
 					</Link>

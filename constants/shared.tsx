@@ -9,6 +9,7 @@ export const navLinks = [
 	{ value: '/svatby', label: 'Svatby', sublabel: 'Vzpomínka na celý život' },
 	{ value: '/promo-videa', label: 'Promo videa', sublabel: 'Získejte nové klienty' },
 	{ value: '/eventy', label: 'Eventy', sublabel: 'Uchovejte jedinečný zážitek' },
+	{ value: '/blog', label: 'Blog', sublabel: 'Aktuality a zajimávosti' },
 ];
 
 export const socialMedia = [

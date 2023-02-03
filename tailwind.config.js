@@ -20,7 +20,7 @@ module.exports = {
 			},
 			colors: {
 				'primary-black': '#111827',
-				'primary-white': '#fcfcfd',
+				'primary-white': '#f6f6f9',
 				'primary-blue': '#04aadd',
 				'primary-red': '#dc2626',
 				'secondary-white': '#FFFFFF',
@@ -29,5 +29,5 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/typography')],
 };
