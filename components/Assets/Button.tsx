@@ -15,41 +15,41 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-	children,
-	isSubmit = false,
-	loading = false,
-	onClick,
-	disabled = false,
-	customStyles,
-	href,
-	mouseEnter,
+  children,
+  isSubmit = false,
+  loading = false,
+  onClick,
+  disabled = false,
+  customStyles,
+  href,
+  mouseEnter,
 }) => {
-	const sharedClass = classNames(
-		'bg-primary-blue text-primary-white hoverButton p-3 px-6 min-w-[300px] rounded-sm flex items-center justify-center whitespace-nowrap',
-		customStyles,
-	);
+  const sharedClass = classNames(
+    'bg-primary-blue text-primary-white hoverButton p-3 px-6 min-w-[300px] rounded-sm flex items-center justify-center whitespace-nowrap',
+    customStyles,
+  );
 
-	return href ? (
-		<Link href={href}>
-			<button
-				onClick={onClick && onClick}
-				onMouseEnter={mouseEnter && mouseEnter}
-				disabled={disabled}
-				className={sharedClass}
-			>
-				{loading ? <Loader /> : children}
-			</button>
-		</Link>
-	) : (
-		<button
-			disabled={disabled}
-			onClick={onClick && onClick}
-			type={isSubmit ? 'submit' : 'button'}
-			className={sharedClass}
-		>
-			{loading ? <Loader /> : children}
-		</button>
-	);
+  return href ? (
+    <Link href={href}>
+      <button
+        onClick={onClick && onClick}
+        onMouseEnter={mouseEnter && mouseEnter}
+        disabled={disabled}
+        className={sharedClass}
+      >
+        {loading ? <Loader /> : children}
+      </button>
+    </Link>
+  ) : (
+    <button
+      disabled={disabled}
+      onClick={onClick && onClick}
+      type={isSubmit ? 'submit' : 'button'}
+      className={sharedClass}
+    >
+      {loading ? <Loader /> : children}
+    </button>
+  );
 };
 
 export default Button;

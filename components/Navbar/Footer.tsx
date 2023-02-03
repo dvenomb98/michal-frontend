@@ -10,68 +10,68 @@ const listClasses = 'flex flex-col gap-2';
 export const iconClasses = 'w-8 h-8';
 
 const Footer = () => {
-	const footerList = [
-		{
-			value: 'info@perspective-video.cz',
-			icon: <InboxIcon className={iconClasses} />,
-		},
-		{
-			value: '+420 608 813 049',
-			icon: <PhoneIcon className={iconClasses} />,
-		},
-		{
-			value: 'IČ: 08874867',
-			icon: <CheckBadgeIcon className={iconClasses} />,
-		},
-	];
-	return (
-		<footer className="bg-primary-blue text-white">
-			<Container customStyles="flex flex-col justify-between items-start lg:flex-row gap-10">
-				<div className={boxClasses}>
-					<h2 className={headerClasses}>Kontakt</h2>
+  const footerList = [
+    {
+      value: 'info@perspective-video.cz',
+      icon: <InboxIcon className={iconClasses} />,
+    },
+    {
+      value: '+420 608 813 049',
+      icon: <PhoneIcon className={iconClasses} />,
+    },
+    {
+      value: 'IČ: 08874867',
+      icon: <CheckBadgeIcon className={iconClasses} />,
+    },
+  ];
+  return (
+    <footer className="bg-primary-blue text-white">
+      <Container customStyles="flex flex-col justify-between items-start lg:flex-row gap-10">
+        <div className={boxClasses}>
+          <h2 className={headerClasses}>Kontakt</h2>
 
-					<ul className={listClasses}>
-						{footerList?.map(({ value, icon }) => (
-							<div key={value} className="flex items-center gap-5">
-								{icon}
-								<li className="font-light p-2">{value}</li>
-							</div>
-						))}
-					</ul>
-				</div>
+          <ul className={listClasses}>
+            {footerList?.map(({ value, icon }) => (
+              <div key={value} className="flex items-center gap-5">
+                {icon}
+                <li className="font-light p-2">{value}</li>
+              </div>
+            ))}
+          </ul>
+        </div>
 
-				<nav className={boxClasses}>
-					<h2 className={headerClasses}>Navigace</h2>
+        <nav className={boxClasses}>
+          <h2 className={headerClasses}>Navigace</h2>
 
-					<ul className={listClasses}>
-						{navLinks?.map(({ value, label }) => (
-							<div key={value} className="flex items-center gap-5">
-								<Link href={value}>
-									<li className="font-light p-2">{label}</li>
-								</Link>
-							</div>
-						))}
-					</ul>
-				</nav>
+          <ul className={listClasses}>
+            {navLinks?.map(({ value, label }) => (
+              <div key={value} className="flex items-center gap-5">
+                <Link href={value}>
+                  <li className="font-light p-2">{label}</li>
+                </Link>
+              </div>
+            ))}
+          </ul>
+        </nav>
 
-				<div className={boxClasses}>
-					<h2 className={headerClasses}>Sociální média</h2>
+        <div className={boxClasses}>
+          <h2 className={headerClasses}>Sociální média</h2>
 
-					<ul className={listClasses}>
-						{socialMedia?.map(({ value, label, icon }) => (
-							<Link key={value} href={value} target="_blank">
-								<div className="flex items-center gap-5">
-									{icon}
-									<li className="font-light p-2">{label}</li>
-								</div>
-							</Link>
-						))}
-					</ul>
-				</div>
-			</Container>
-			<p className="text-center text-sm py-3 w-full border-t">Copyright © 2023 Daniel Bílek.</p>
-		</footer>
-	);
+          <ul className={listClasses}>
+            {socialMedia?.map(({ value, label, icon }) => (
+              <Link key={value} href={value} target="_blank">
+                <div className="flex items-center gap-5">
+                  {icon}
+                  <li className="font-light p-2">{label}</li>
+                </div>
+              </Link>
+            ))}
+          </ul>
+        </div>
+      </Container>
+      <p className="text-center text-sm py-3 w-full border-t">Copyright © 2023 Daniel Bílek.</p>
+    </footer>
+  );
 };
 
 export default Footer;

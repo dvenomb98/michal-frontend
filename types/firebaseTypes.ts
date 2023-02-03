@@ -107,7 +107,6 @@ export interface EventyPage {
   contactCompData: ContactComponent;
 }
 
-
 //
 //
 // BLOG
@@ -115,16 +114,15 @@ export interface EventyPage {
 //
 
 export interface BlogPost {
-  id: string
-  title: string
-  slug: string
-  description: string
-  featured_img: string
-  thumbnail: string
-  tags: string[]
-  content: string
-  minutes_to_read: number | null
-  created_at: string
-  isPublished: boolean
-  
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  featured_img: string;
+  thumbnail: string;
+  tags: string[];
+  content: string;
+  minutes_to_read: number | null;
+  created_at: string;
+  isPublished: boolean;
 }

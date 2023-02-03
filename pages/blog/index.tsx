@@ -6,18 +6,13 @@ import Container from '../../components/Layouts/Container';
 import Tags from '../../components/Shared/Tags';
 import { BlogPost } from '../../types/firebaseTypes';
 
-import {getPublishedPosts } from '../../utils/firebaseUtils';
+import { getPublishedPosts } from '../../utils/firebaseUtils';
 
 interface BlogProps {
   allPosts: BlogPost[];
 }
 
 const Blog: React.FC<BlogProps> = ({ allPosts }) => {
-
-
-
-
-  
   return (
     <Background>
       <Container customStyles="min-h-screen sharedLayout">
@@ -30,25 +25,26 @@ const Blog: React.FC<BlogProps> = ({ allPosts }) => {
             <>
               {allPosts?.map(({ title, id, created_at, tags, thumbnail, description, slug }) => (
                 <Link key={id} href={`/blog/${slug}`}>
-                <div  className="bg-secondary-white border-2 rounded-sm  border-primary-white  hover:border-primary-blue hover:shadow-xl hover:shadow-primary-blue/50 transition duration-200 
+                  <div
+                    className="bg-secondary-white border-2 rounded-sm  border-primary-white  hover:border-primary-blue hover:shadow-xl hover:shadow-primary-blue/50 transition duration-200 
                 lg:flex lg:flex-row lg:justify-between "
-                >
-                  <div className="flex flex-col gap-5 p-5 ">
-                    <h2 className="text-h3 lg:text-h2"> {title}</h2>
-                    <div className="flex flex-col gap-5">
-                      <p className="text-primary-gray"> {created_at}</p>
-                      <Tags tags={tags} />
+                  >
+                    <div className="flex flex-col gap-5 p-5 ">
+                      <h2 className="text-h3 lg:text-h2"> {title}</h2>
+                      <div className="flex flex-col gap-5">
+                        <p className="text-primary-gray"> {created_at}</p>
+                        <Tags tags={tags} />
+                      </div>
+                      <p className="text-primary-gray">{description}</p>
                     </div>
-                    <p className='text-primary-gray'>{description}</p>
+                    <Image
+                      src={thumbnail}
+                      width={800}
+                      height={800}
+                      alt={title}
+                      className={'rounded-b-sm lg:w-1/3 lg:h-auto lg:rounded-none lg:rounded-r-sm '}
+                    />
                   </div>
-                  <Image
-                  src={thumbnail}
-                  width={800}
-                  height={800}
-                  alt={title}
-                  className={"rounded-b-sm lg:w-1/3 lg:h-auto lg:rounded-none lg:rounded-r-sm "}
-                  />
-                </div>
                 </Link>
               ))}
             </>

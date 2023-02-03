@@ -5,7 +5,6 @@ import { inputClass } from './FormInput';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { selectBoxClass } from './FormSelect';
 
-
 const TagsSelect: React.FC<any> = ({
   name,
   label,
@@ -16,20 +15,18 @@ const TagsSelect: React.FC<any> = ({
   ...props
 }) => {
   const [field] = useField(name);
-  const {setFieldValue} = useFormikContext();
+  const { setFieldValue } = useFormikContext();
   const id = `${name}-${field.name}`;
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedValues = Array.from(event.target.selectedOptions).map(
       (option: HTMLOptionElement) => option.value,
     );
-  
 
     setFieldValue(field.name, [...field.value, ...selectedValues]);
   };
 
   const handleRemoveOption = (option: string) => {
-    
     setFieldValue(
       field.name,
       selectedOptions.filter((selectedOption: string) => selectedOption !== option),
@@ -52,7 +49,7 @@ const TagsSelect: React.FC<any> = ({
           </div>
         ))}
       </div>
-      
+
       <select
         id={id}
         onChange={handleChange}

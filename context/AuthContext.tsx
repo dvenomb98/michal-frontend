@@ -1,4 +1,4 @@
-/* eslint no-use-before-define: 0 */ 
+/* eslint no-use-before-define: 0 */
 
 import React, { useContext, useEffect, useState } from 'react';
 import {
@@ -10,9 +10,8 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase';
 
-
 interface AuthContextProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 interface AuthContextModel {
@@ -24,17 +23,13 @@ interface AuthContextModel {
 const UserContext = React.createContext<AuthContextModel>({} as AuthContextModel);
 
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
-  
   const [user, setUser] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  
 
   const signIn = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-
- 
   const logout = () => {
     return signOut(auth);
   };
@@ -48,7 +43,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
       unsubscribe();
     };
   }, []);
-
 
   return (
     <UserContext.Provider
@@ -64,5 +58,5 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
 };
 
 export const UserAuth = () => {
-  return useContext(UserContext)
-}
+  return useContext(UserContext);
+};

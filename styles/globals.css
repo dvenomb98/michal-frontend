@@ -4,27 +4,26 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
-    body {
-        @apply font-baseFamily text-primary-black text-lg
-    }
+  body {
+    @apply font-baseFamily text-primary-black text-lg;
   }
+}
 
-  @layer components {
-    .gradientBg {
-      background: -webkit-linear-gradient(0deg,#04aadd 20%,#03afe4 50%,#01c4ff 80%);
+@layer components {
+  .gradientBg {
+    background: -webkit-linear-gradient(0deg, #04aadd 20%, #03afe4 50%, #01c4ff 80%);
   }
 
   .hoverButton {
-    @apply hover:bg-sky-600  transition-all ease-in-out
+    @apply hover:bg-sky-600  transition-all ease-in-out;
   }
 
   .title {
-    @apply text-h1 font-semibold 
+    @apply text-h1 font-semibold;
   }
 
   .sharedLayout {
-    @apply flex flex-col gap-24
-}
+    @apply flex flex-col gap-24;
   }
+}

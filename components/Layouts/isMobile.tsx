@@ -6,9 +6,9 @@ interface MobileWidthProps {
 const BREAKPOINT = 1024;
 
 const useMobileWidth = (): MobileWidthProps => {
-	const isMobile = useMedia(`(max-width: ${BREAKPOINT}px)`, true);
+  const isMobile = useMedia(`(max-width: ${BREAKPOINT}px)`, true);
 
-	return { isMobile };
+  return { isMobile };
 };
 
 export default useMobileWidth;

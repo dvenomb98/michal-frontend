@@ -1,3 +1,3 @@
 export const formatDateUtil = (string: string) => {
-    return new Date(string).toLocaleDateString();
-  };
+  return new Date(string).toLocaleDateString();
+};

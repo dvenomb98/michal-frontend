@@ -19,61 +19,61 @@ interface SvatbyProps {
 }
 
 const Svatby: React.FC<SvatbyProps> = ({ data }) => {
-	const { showcases, banner, reasonsBoxes, plainText, references, priceList, faq } =
+  const { showcases, banner, reasonsBoxes, plainText, references, priceList, faq } =
     data.svatbyData;
-	const { sharedBannerData, contactCompData } = data;
+  const { sharedBannerData, contactCompData } = data;
 
-	return (
-		<Background>
-			<Banner video={banner?.video} title={banner?.title} />
+  return (
+    <Background>
+      <Banner video={banner?.video} title={banner?.title} />
 
-			<Container customStyles="sharedLayout">
-				{showcases && <Showcases showcases={showcases} />}
-				{plainText?.length && <PlainText texts={plainText} />}
-				{reasonsBoxes && (
-					<ReasonsBoxes title={reasonsBoxes?.title} reasons={reasonsBoxes.reasons} />
-				)}
-			</Container>
-			{sharedBannerData && <BannerInfo data={sharedBannerData} />}
-			<Container customStyles="sharedLayout">
-				{references?.length && <Slider images={references} />}
+      <Container customStyles="sharedLayout">
+        {showcases && <Showcases showcases={showcases} />}
+        {plainText?.length && <PlainText texts={plainText} />}
+        {reasonsBoxes && (
+          <ReasonsBoxes title={reasonsBoxes?.title} reasons={reasonsBoxes.reasons} />
+        )}
+      </Container>
+      {sharedBannerData && <BannerInfo data={sharedBannerData} />}
+      <Container customStyles="sharedLayout">
+        {references?.length && <Slider images={references} />}
 
-				{priceList?.length && <PriceList priceList={priceList} />}
+        {priceList?.length && <PriceList priceList={priceList} />}
 
-				{faq?.length && <Faq faqComponent={faq} />}
+        {faq?.length && <Faq faqComponent={faq} />}
 
-				{contactCompData && (
-					<ContactMe
-						buttonText={contactCompData?.buttonText}
-						title={contactCompData?.title}
-						description={contactCompData?.description}
-					/>
-				)}
-			</Container>
-		</Background>
-	);
+        {contactCompData && (
+          <ContactMe
+            buttonText={contactCompData?.buttonText}
+            title={contactCompData?.title}
+            description={contactCompData?.description}
+          />
+        )}
+      </Container>
+    </Background>
+  );
 };
 
 export async function getStaticProps() {
-	const [svatbySnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
-		getDoc(doc(db, 'svatby', 'layout')),
-		getDoc(doc(db, 'shared', 'bannerInfo')),
-		getDoc(doc(db, 'shared', 'contactComponent')),
-	]);
+  const [svatbySnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
+    getDoc(doc(db, 'svatby', 'layout')),
+    getDoc(doc(db, 'shared', 'bannerInfo')),
+    getDoc(doc(db, 'shared', 'contactComponent')),
+  ]);
 
-	const svatbyData = svatbySnapshot.data();
-	const sharedBannerData = sharedBannerSnapshot.data();
-	const contactCompData = contactComponentSnapshot.data();
+  const svatbyData = svatbySnapshot.data();
+  const sharedBannerData = sharedBannerSnapshot.data();
+  const contactCompData = contactComponentSnapshot.data();
 
-	return {
-		props: {
-			data: {
-				svatbyData,
-				sharedBannerData,
-				contactCompData,
-			},
-		},
-	};
+  return {
+    props: {
+      data: {
+        svatbyData,
+        sharedBannerData,
+        contactCompData,
+      },
+    },
+  };
 }
 
 export default Svatby;

@@ -18,55 +18,55 @@ interface SvatbyProps {
 }
 
 const Eventy: React.FC<SvatbyProps> = ({ data }) => {
-	const { showcases, banner, reasonsBoxes, plainText } = data.eventyData;
-	const { sharedBannerData, contactCompData } = data;
+  const { showcases, banner, reasonsBoxes, plainText } = data.eventyData;
+  const { sharedBannerData, contactCompData } = data;
 
-	return (
-		<Background>
-			<Banner image={banner?.img!} title={banner?.title} />
-			<Container customStyles="sharedLayout">
-				{showcases?.length && <Showcases showcases={showcases} />}
-				{plainText?.length && <PlainText texts={plainText} />}
-				{reasonsBoxes && (
-					<ReasonsBoxes title={reasonsBoxes?.title} reasons={reasonsBoxes?.reasons} />
-				)}
-			</Container>
+  return (
+    <Background>
+      <Banner image={banner?.img!} title={banner?.title} />
+      <Container customStyles="sharedLayout">
+        {showcases?.length && <Showcases showcases={showcases} />}
+        {plainText?.length && <PlainText texts={plainText} />}
+        {reasonsBoxes && (
+          <ReasonsBoxes title={reasonsBoxes?.title} reasons={reasonsBoxes?.reasons} />
+        )}
+      </Container>
 
-			{sharedBannerData && <BannerInfo data={sharedBannerData} />}
+      {sharedBannerData && <BannerInfo data={sharedBannerData} />}
 
-			<Container customStyles="sharedLayout">
-				{contactCompData && (
-					<ContactMe
-						title={contactCompData.title}
-						description={contactCompData.description}
-						buttonText={contactCompData.buttonText}
-					/>
-				)}
-			</Container>
-		</Background>
-	);
+      <Container customStyles="sharedLayout">
+        {contactCompData && (
+          <ContactMe
+            title={contactCompData.title}
+            description={contactCompData.description}
+            buttonText={contactCompData.buttonText}
+          />
+        )}
+      </Container>
+    </Background>
+  );
 };
 
 export async function getStaticProps() {
-	const [eventySnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
-		getDoc(doc(db, 'eventy', 'layout')),
-		getDoc(doc(db, 'shared', 'bannerInfo')),
-		getDoc(doc(db, 'shared', 'contactComponent')),
-	]);
+  const [eventySnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
+    getDoc(doc(db, 'eventy', 'layout')),
+    getDoc(doc(db, 'shared', 'bannerInfo')),
+    getDoc(doc(db, 'shared', 'contactComponent')),
+  ]);
 
-	const eventyData = eventySnapshot.data();
-	const sharedBannerData = sharedBannerSnapshot.data();
-	const contactCompData = contactComponentSnapshot.data();
+  const eventyData = eventySnapshot.data();
+  const sharedBannerData = sharedBannerSnapshot.data();
+  const contactCompData = contactComponentSnapshot.data();
 
-	return {
-		props: {
-			data: {
-				eventyData,
-				sharedBannerData,
-				contactCompData,
-			},
-		},
-	};
+  return {
+    props: {
+      data: {
+        eventyData,
+        sharedBannerData,
+        contactCompData,
+      },
+    },
+  };
 }
 
 export default Eventy;

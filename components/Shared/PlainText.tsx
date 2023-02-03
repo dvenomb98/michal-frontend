@@ -5,13 +5,13 @@ interface PlainTextProps {
 }
 
 const PlainText: React.FC<PlainTextProps> = ({ texts }) => {
-	return (
-		<div className="flex flex-col gap-5">
-			{texts?.map((t) => (
-				<p key={t}>{t}</p>
-			))}
-		</div>
-	);
+  return (
+    <div className="flex flex-col gap-5">
+      {texts?.map((t) => (
+        <p key={t}>{t}</p>
+      ))}
+    </div>
+  );
 };
 
 export default PlainText;

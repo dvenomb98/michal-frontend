@@ -5,16 +5,14 @@ import Container from '../../components/Layouts/Container';
 import Tags from '../../components/Shared/Tags';
 import { BlogPost } from '../../types/firebaseTypes';
 import { getPostById, getPublishedPosts } from '../../utils/firebaseUtils';
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown from 'react-markdown';
 import { MarkdownComponents } from '../../components/Assets/MarkdownComponent';
-
 
 interface SinglePostProps {
   postData: BlogPost;
 }
 
 const SinglePost: React.FC<SinglePostProps> = ({ postData }) => {
-
   const { title, tags, featured_img, content, created_at } = postData;
 
   return (
@@ -34,7 +32,12 @@ const SinglePost: React.FC<SinglePostProps> = ({ postData }) => {
             priority
           />
         </div>
-        <ReactMarkdown className="prose prose-h1:font-semibold prose-lg max-w-none lg:w-3/4" components={MarkdownComponents}>{content}</ReactMarkdown>
+        <ReactMarkdown
+          className="prose prose-h1:font-semibold prose-lg max-w-none lg:w-3/4"
+          components={MarkdownComponents}
+        >
+          {content}
+        </ReactMarkdown>
       </Container>
     </Background>
   );

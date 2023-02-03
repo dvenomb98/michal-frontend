@@ -33,8 +33,8 @@ const Interface = () => {
   const initialValues: BlogPost = {
     id: '',
     title: '',
-    description: "",
-    slug: "",
+    description: '',
+    slug: '',
     thumbnail: '',
     featured_img: '',
     tags: [],
@@ -168,7 +168,11 @@ const Interface = () => {
                       label="Doba ke čtení v minutách"
                       placeholder="5"
                     />
-                    <FormCheckbox name="isPublished" label="Publikovat článek" checked={values.isPublished} />
+                    <FormCheckbox
+                      name="isPublished"
+                      label="Publikovat článek"
+                      checked={values.isPublished}
+                    />
                     <FormTextArea
                       name="content"
                       label="Obsah"
