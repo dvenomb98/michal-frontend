@@ -50,25 +50,30 @@ const Navbar = () => {
               </Popover.Button>
               <Popover.Overlay className="fixed inset-0 bg-black opacity-30 z-40 " />
               <Popover.Panel className="absolute right-0 bg-primary-white z-50 p-5 rounded-sm">
-                <ul className="flex flex-col gap-5 ">
-                  {navLinks?.map(({ value, label, sublabel }) => (
-                    <Link href={value} key={label}>
-                      <li className="hover:text-primary-blue transition-all ease-in-out whitespace-nowrap flex flex-col hover:bg-primary-gray/10 p-2 rounded-sm w-full">
-                        {label}
-                        <span className="text-primary-gray">{sublabel}</span>
-                      </li>
-                    </Link>
-                  ))}
-                  <Button
-                    href="/kontakt"
-                    customStyles="flex items-center justify-center gap-2 group"
-                  >
-                    <>
-                      <span>Kontaktovat</span>
-                      <ArrowLongRightIcon className="w-5 h-5 group-hover:translate-x-1 group-hover:transition group-hover:ease-in-out" />
-                    </>
-                  </Button>
-                </ul>
+                {({ close }) => (
+                  <ul className="flex flex-col gap-5 ">
+                    {navLinks?.map(({ value, label, sublabel }) => (
+                      <Link href={value} key={label}>
+                        <li
+                          onClick={() => close()}
+                          className="hover:text-primary-blue transition-all ease-in-out whitespace-nowrap flex flex-col hover:bg-primary-gray/10 p-2 rounded-sm w-full"
+                        >
+                          {label}
+                          <span className="text-primary-gray">{sublabel}</span>
+                        </li>
+                      </Link>
+                    ))}
+                    <Button
+                      href="/kontakt"
+                      customStyles="flex items-center justify-center gap-2 group"
+                    >
+                      <>
+                        <span>Kontaktovat</span>
+                        <ArrowLongRightIcon className="w-5 h-5 group-hover:translate-x-1 group-hover:transition group-hover:ease-in-out" />
+                      </>
+                    </Button>
+                  </ul>
+                )}
               </Popover.Panel>
             </Popover>
           )}
