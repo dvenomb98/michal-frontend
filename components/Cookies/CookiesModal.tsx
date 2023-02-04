@@ -1,6 +1,8 @@
 import { Dialog } from '@headlessui/react';
+import { setAnalyticsCollectionEnabled } from 'firebase/analytics';
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { analytics } from '../../firebase';
 import Button from '../Assets/Button';
 import Toggler from '../Assets/Toggler';
 

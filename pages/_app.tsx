@@ -8,6 +8,8 @@ import { AuthContextProvider } from '../context/AuthContext';
 import { CookiesProvider, useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import CookiesModal from '../components/Cookies/CookiesModal';
+import { setAnalyticsCollectionEnabled } from 'firebase/analytics';
+import { analytics } from '../firebase';
 
 const ignoringPathnames = ['/'];
 
@@ -20,7 +22,17 @@ export default function App({ Component, pageProps }: AppProps) {
     if (typeof cookies.analytics === 'undefined' || typeof cookies.required === 'undefined') {
       setOpenCookiesModal(true);
     }
-  }, [cookies]);
+  }, [cookies.analytics, analytics]);
+
+  useEffect(() => {
+    if (!!analytics && !cookies.analytics) {
+      setAnalyticsCollectionEnabled(analytics, false);
+    }
+
+    if (cookies.analytics && !!analytics) {
+      setAnalyticsCollectionEnabled(analytics, true);
+    }
+  }, [cookies.analytics, analytics]);
 
   return (
     <>
