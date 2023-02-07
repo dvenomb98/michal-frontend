@@ -21,9 +21,12 @@ const CookiesModal: React.FC<CookiesModalProps> = ({ open, setOpen }) => {
   const [openPreferences, setOpenPreferences] = useState<boolean>(false);
   const [allowedCookies, setAllowedCookies] = useState({ analytics: true, required: true });
 
+  // expires one year from now
+  const options = { expires: new Date(new Date().setFullYear(new Date().getFullYear() + 1)) };
+
   const handleAllowAll = () => {
-    setCookie(CookiesValues.ANALYTICS, true);
-    setCookie(CookiesValues.REQUIRED, true);
+    setCookie(CookiesValues.ANALYTICS, true, options);
+    setCookie(CookiesValues.REQUIRED, true, options);
     setAnalyticsCollectionEnabled(analytics!, true);
     setOpen(false);
     setOpenPreferences(false);
@@ -35,15 +38,15 @@ const CookiesModal: React.FC<CookiesModalProps> = ({ open, setOpen }) => {
   };
 
   const handleAllowRequired = () => {
-    setCookie(CookiesValues.REQUIRED, true);
-    setCookie(CookiesValues.ANALYTICS, false);
+    setCookie(CookiesValues.REQUIRED, true, options);
+    setCookie(CookiesValues.ANALYTICS, false, options);
     setAnalyticsCollectionEnabled(analytics!, false);
     setOpenPreferences(false);
   };
 
   const handleAllowPreferences = () => {
-    setCookie(CookiesValues.REQUIRED, allowedCookies.required);
-    setCookie(CookiesValues.ANALYTICS, allowedCookies.analytics);
+    setCookie(CookiesValues.REQUIRED, allowedCookies.required, options);
+    setCookie(CookiesValues.ANALYTICS, allowedCookies.analytics, options);
 
     if (!allowedCookies.analytics) {
       setAnalyticsCollectionEnabled(analytics!, false);
