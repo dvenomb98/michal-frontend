@@ -2,9 +2,9 @@ import { Dialog } from '@headlessui/react';
 import { setAnalyticsCollectionEnabled } from 'firebase/analytics';
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
-import { analytics } from '../../firebase';
 import Button from '../Assets/Button';
 import Toggler from '../Assets/Toggler';
+import { analytics } from '../../firebase';
 
 interface CookiesModalProps {
   open: boolean;
@@ -24,6 +24,7 @@ const CookiesModal: React.FC<CookiesModalProps> = ({ open, setOpen }) => {
   const handleAllowAll = () => {
     setCookie(CookiesValues.ANALYTICS, true);
     setCookie(CookiesValues.REQUIRED, true);
+    setAnalyticsCollectionEnabled(analytics!, true);
     setOpen(false);
     setOpenPreferences(false);
   };
@@ -36,12 +37,20 @@ const CookiesModal: React.FC<CookiesModalProps> = ({ open, setOpen }) => {
   const handleAllowRequired = () => {
     setCookie(CookiesValues.REQUIRED, true);
     setCookie(CookiesValues.ANALYTICS, false);
+    setAnalyticsCollectionEnabled(analytics!, false);
     setOpenPreferences(false);
   };
 
   const handleAllowPreferences = () => {
     setCookie(CookiesValues.REQUIRED, allowedCookies.required);
     setCookie(CookiesValues.ANALYTICS, allowedCookies.analytics);
+
+    if (!allowedCookies.analytics) {
+      setAnalyticsCollectionEnabled(analytics!, false);
+    } else {
+      setAnalyticsCollectionEnabled(analytics!, true);
+    }
+
     setOpenPreferences(false);
   };
 

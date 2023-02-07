@@ -17,22 +17,20 @@ export default function App({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
   const [openCookiesModal, setOpenCookiesModal] = useState<boolean>(false);
   const [cookies] = useCookies();
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
     if (typeof cookies.analytics === 'undefined' || typeof cookies.required === 'undefined') {
       setOpenCookiesModal(true);
+      return;
     }
-  }, [cookies.analytics, analytics]);
-
-  useEffect(() => {
-    if (!!analytics && !cookies.analytics) {
-      setAnalyticsCollectionEnabled(analytics, false);
-    }
-
-    if (cookies.analytics && !!analytics) {
-      setAnalyticsCollectionEnabled(analytics, true);
-    }
-  }, [cookies.analytics, analytics]);
+  }, [isLoaded]);
 
   return (
     <>
