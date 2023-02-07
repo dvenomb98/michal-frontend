@@ -8,8 +8,6 @@ import { AuthContextProvider } from '../context/AuthContext';
 import { CookiesProvider, useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import CookiesModal from '../components/Cookies/CookiesModal';
-import { setAnalyticsCollectionEnabled } from 'firebase/analytics';
-import { analytics } from '../firebase';
 
 const ignoringPathnames = ['/'];
 
