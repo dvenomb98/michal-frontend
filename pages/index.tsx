@@ -1,7 +1,7 @@
 import Button from '../components/Assets/Button';
 import { db } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import { SquareData } from '../types/firebaseTypes';
+import { doc, getDoc } from 'firebase/firestore';
+import { SquarePage } from '../types/firebaseTypes';
 import { FC, useState } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
@@ -9,11 +9,13 @@ import { logEvent } from 'firebase/analytics';
 import { analytics } from '../firebase';
 
 interface SquareProps {
-  data: SquareData[];
+  data: SquarePage;
 }
 
 const Square: FC<SquareProps> = ({ data }) => {
-  const [selectedImg, setSelectedImg] = useState<string>(data[0]?.img);
+  const { squareData } = data;
+
+  const [selectedImg, setSelectedImg] = useState<string>(squareData[0]?.img);
   const [isLoaded, setIsLoaded] = useState<boolean>(true);
 
   const handleMouseEnter = (img: string) => {
@@ -28,7 +30,7 @@ const Square: FC<SquareProps> = ({ data }) => {
 
   return (
     <div className="min-h-screen relative flex items-center justify-center">
-      {data.map(({ img, name }, index) => (
+      {squareData?.map(({ img, name }, index) => (
         <Image
           src={img}
           className={classNames(
@@ -41,7 +43,7 @@ const Square: FC<SquareProps> = ({ data }) => {
         />
       ))}
       <div className="flex flex-col lg:flex-row items-center justify-center gap-20 relative z-1">
-        {data.map(({ name, url, img }, index) => (
+        {squareData?.map(({ name, url, img }, index) => (
           <Button
             key={`${name}_${index}`}
             href={url}
@@ -58,13 +60,20 @@ const Square: FC<SquareProps> = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  const snapshot = await getDocs(collection(db, 'square'));
-  const data = snapshot.docs.map((doc) => doc.data());
+  const [squareSnapshot, seoSnapshot] = await Promise.all([
+    getDoc(doc(db, 'square', 'layout')),
+    getDoc(doc(db, 'square', 'seo')),
+  ]);
 
-  // Return props
+  const squareData = squareSnapshot.data();
+  const seoData = seoSnapshot.data();
+
   return {
     props: {
-      data,
+      data: {
+        squareData: squareData?.content,
+        seoData: seoData,
+      },
     },
   };
 }

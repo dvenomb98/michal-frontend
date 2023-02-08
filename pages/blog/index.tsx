@@ -19,7 +19,7 @@ const Blog: React.FC<BlogProps> = ({ allPosts }) => {
         <h1 className="title">BLOG</h1>
 
         <div>
-          {!allPosts || !allPosts.length ? (
+          {!allPosts?.length ? (
             <p>Momentálně nemáme k dispozici žádné příspěvky.</p>
           ) : (
             <>

@@ -8,6 +8,7 @@ import FormInput from '../../components/Assets/FormInput';
 import Button from '../../components/Assets/Button';
 import Message from '../../components/Assets/Message';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 
 interface LoginProps {
   email: string;
@@ -57,35 +58,42 @@ const Index = () => {
   };
 
   return (
-    <Background>
-      <Container customStyles="sharedLayout">
-        <Formik
-          initialValues={initialValues}
-          onSubmit={async (values) => {
-            const res = await signInUser(values);
-            res && push('/admin/interface');
-          }}
-          validationSchema={LoginSchema}
-        >
-          {({ isSubmitting }) => (
-            <Form className="flex flex-col gap-5 min-h-screen">
-              <h1 className="title">Přihlásit se</h1>
-              <FormInput name="email" label="Emailová adresa:" placeholder="tvujemail@seznam.cz" />
-              <FormInput name="password" type="password" label="Heslo:" placeholder="****" />
-              {!!message && <Message isError={error} text={message} />}
-              <Button
-                customStyles="lg:max-w-[300px]"
-                isSubmit
-                disabled={isSubmitting}
-                loading={isSubmitting}
-              >
-                <>Přihlásit se</>
-              </Button>
-            </Form>
-          )}
-        </Formik>
-      </Container>
-    </Background>
+    <>
+      <NextSeo noindex nofollow />
+      <Background>
+        <Container customStyles="sharedLayout">
+          <Formik
+            initialValues={initialValues}
+            onSubmit={async (values) => {
+              const res = await signInUser(values);
+              res && push('/admin/interface');
+            }}
+            validationSchema={LoginSchema}
+          >
+            {({ isSubmitting }) => (
+              <Form className="flex flex-col gap-5 min-h-screen">
+                <h1 className="title">Přihlásit se</h1>
+                <FormInput
+                  name="email"
+                  label="Emailová adresa:"
+                  placeholder="tvujemail@seznam.cz"
+                />
+                <FormInput name="password" type="password" label="Heslo:" placeholder="****" />
+                {!!message && <Message isError={error} text={message} />}
+                <Button
+                  customStyles="lg:max-w-[300px]"
+                  isSubmit
+                  disabled={isSubmitting}
+                  loading={isSubmitting}
+                >
+                  <>Přihlásit se</>
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </Container>
+      </Background>
+    </>
   );
 };
 

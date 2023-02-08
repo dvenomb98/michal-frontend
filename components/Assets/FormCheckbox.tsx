@@ -6,8 +6,6 @@ const FormCheckbox: React.FC<any> = ({ name, label, checked, ...props }) => {
   const errorText = meta.error && meta.touched ? meta.error : '';
   const id = `${name}-${field.name}`;
 
-  console.log(checked);
-
   return (
     <div className="flex items-center gap-5">
       <label htmlFor={id}>{label}</label>

@@ -2,6 +2,7 @@ import { PencilIcon } from '@heroicons/react/24/outline';
 import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { Form, Formik } from 'formik';
 import { nanoid } from 'nanoid';
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -94,123 +95,126 @@ const Interface = () => {
   };
 
   return (
-    <Background>
-      <Container customStyles="sharedLayout min-h-screen">
-        {isLoaded ? (
-          <Formik
-            initialValues={initialValues}
-            onSubmit={async (values, { resetForm }) => {
-              const res = await handleSubmit(values);
-              if (res) {
-                setError(false);
-                setMessage('Odeslání proběhlo úspěšně!');
-                resetForm();
-              }
-            }}
-          >
-            {({ values, isSubmitting, setValues }) => (
-              <>
-                {allPosts?.length ? (
+    <>
+      <NextSeo noindex nofollow />
+      <Background>
+        <Container customStyles="sharedLayout min-h-screen">
+          {isLoaded ? (
+            <Formik
+              initialValues={initialValues}
+              onSubmit={async (values, { resetForm }) => {
+                const res = await handleSubmit(values);
+                if (res) {
+                  setError(false);
+                  setMessage('Odeslání proběhlo úspěšně!');
+                  resetForm();
+                }
+              }}
+            >
+              {({ values, isSubmitting, setValues }) => (
+                <>
+                  {allPosts?.length ? (
+                    <div className="flex flex-col gap-5">
+                      <h2 className="title">Dostupné články</h2>
+
+                      <ul className="flex gap-5">
+                        {allPosts.map((post) => (
+                          <li
+                            onClick={() => {
+                              setValues(post);
+                            }}
+                            key={post.title}
+                            className="bg-primary-blue flex gap-2 items-center text-white p-3 rounded-sm cursor-pointer"
+                          >
+                            <PencilIcon className="w-5 h-5" />
+                            {post.title}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                   <div className="flex flex-col gap-5">
-                    <h2 className="title">Dostupné články</h2>
+                    <h2 className="title">Nový článek</h2>
 
-                    <ul className="flex gap-5">
-                      {allPosts.map((post) => (
-                        <li
-                          onClick={() => {
-                            setValues(post);
-                          }}
-                          key={post.title}
-                          className="bg-primary-blue flex gap-2 items-center text-white p-3 rounded-sm cursor-pointer"
-                        >
-                          <PencilIcon className="w-5 h-5" />
-                          {post.title}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ) : null}
-                <div className="flex flex-col gap-5">
-                  <h2 className="title">Nový článek</h2>
-
-                  <Form className="flex flex-col gap-5">
-                    <FormInput name="title" label="Nadpis" placeholder="Hello world!" />
-                    <FormInput
-                      name="slug"
-                      label="Slug(url) - nelze později měnit"
-                      placeholder="pribehy-ze-svateb"
-                      disabled={!!values.id}
-                    />
-                    <FormInput
-                      name="thumbnail"
-                      label="Náhledový obrázek"
-                      placeholder="https:/..."
-                    />
-                    <FormInput
-                      name="featured_img"
-                      label="Hlavní obrázek"
-                      placeholder="https:/..."
-                    />
-                    <FormInput
-                      name="description"
-                      label="Popisek"
-                      placeholder="Jak to vypadá v zákulisí natáčení svateb? Pojdte se semnou podívat na tenhle krásný článek."
-                    />
-                    <TagSelect
-                      name="tags"
-                      label="Tagy"
-                      firstEmpty
-                      options={storeTags}
-                      selectedOptions={values.tags}
-                    />
-                    <FormInput
-                      name="minutes_to_read"
-                      label="Doba ke čtení v minutách"
-                      placeholder="5"
-                    />
-                    <FormCheckbox
-                      name="isPublished"
-                      label="Publikovat článek"
-                      checked={values.isPublished}
-                    />
-                    <FormTextArea
-                      name="content"
-                      label="Obsah"
-                      rows={10}
-                      cols={10}
-                      customStyles={'lg:min-h-[1000px]'}
-                    />
-                    <Link
-                      href="https://www.markdownguide.org/basic-syntax/"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="underline underline-offset-2 text-primary-blue text-sm"
-                    >
-                      Markdown návod ke stylování
-                    </Link>
-                    {!!message && (
-                      <Message
-                        isError={error}
-                        text={message}
-                        clearMessage={() => {
-                          setMessage('');
-                          setError(false);
-                        }}
+                    <Form className="flex flex-col gap-5">
+                      <FormInput name="title" label="Nadpis" placeholder="Hello world!" />
+                      <FormInput
+                        name="slug"
+                        label="Slug(url) - nelze později měnit"
+                        placeholder="pribehy-ze-svateb"
+                        disabled={!!values.id}
                       />
-                    )}
-                    <Button isSubmit loading={isSubmitting} customStyles="lg:max-w-[350px]">
-                      Odeslat
-                    </Button>
-                  </Form>
-                </div>
-              </>
-            )}
-          </Formik>
-        ) : (
-          <FullPageLoader />
-        )}
-      </Container>
-    </Background>
+                      <FormInput
+                        name="thumbnail"
+                        label="Náhledový obrázek"
+                        placeholder="https:/..."
+                      />
+                      <FormInput
+                        name="featured_img"
+                        label="Hlavní obrázek"
+                        placeholder="https:/..."
+                      />
+                      <FormInput
+                        name="description"
+                        label="Popisek"
+                        placeholder="Jak to vypadá v zákulisí natáčení svateb? Pojdte se semnou podívat na tenhle krásný článek."
+                      />
+                      <TagSelect
+                        name="tags"
+                        label="Tagy"
+                        firstEmpty
+                        options={storeTags}
+                        selectedOptions={values.tags}
+                      />
+                      <FormInput
+                        name="minutes_to_read"
+                        label="Doba ke čtení v minutách"
+                        placeholder="5"
+                      />
+                      <FormCheckbox
+                        name="isPublished"
+                        label="Publikovat článek"
+                        checked={values.isPublished}
+                      />
+                      <FormTextArea
+                        name="content"
+                        label="Obsah"
+                        rows={10}
+                        cols={10}
+                        customStyles={'lg:min-h-[1000px]'}
+                      />
+                      <Link
+                        href="https://www.markdownguide.org/basic-syntax/"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="underline underline-offset-2 text-primary-blue text-sm"
+                      >
+                        Markdown návod ke stylování
+                      </Link>
+                      {!!message && (
+                        <Message
+                          isError={error}
+                          text={message}
+                          clearMessage={() => {
+                            setMessage('');
+                            setError(false);
+                          }}
+                        />
+                      )}
+                      <Button isSubmit loading={isSubmitting} customStyles="lg:max-w-[350px]">
+                        Odeslat
+                      </Button>
+                    </Form>
+                  </div>
+                </>
+              )}
+            </Formik>
+          ) : (
+            <FullPageLoader />
+          )}
+        </Container>
+      </Background>
+    </>
   );
 };
 

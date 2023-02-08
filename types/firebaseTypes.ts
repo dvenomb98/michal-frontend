@@ -52,6 +52,11 @@ export interface FaqTypes {
   answer: string;
 }
 
+export interface SeoData {
+  title: string;
+  description: string;
+}
+
 //
 //
 //
@@ -94,6 +99,11 @@ export interface SquareData {
   name: string;
   url: string;
   img: string;
+}
+
+export interface SquarePage {
+  squareData: SquareData[];
+  seoData: SeoData;
 }
 export interface EventyData {
   banner: BannerData;
