@@ -94,15 +94,18 @@ const Promo: React.FC<SvatbyProps> = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  const [promoVideaSnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
-    getDoc(doc(db, 'promo-videa', 'layout')),
-    getDoc(doc(db, 'shared', 'bannerInfo')),
-    getDoc(doc(db, 'shared', 'contactComponent')),
-  ]);
+  const [promoVideaSnapshot, sharedBannerSnapshot, contactComponentSnapshot, seoSnapshot] =
+    await Promise.all([
+      getDoc(doc(db, 'promo-videa', 'layout')),
+      getDoc(doc(db, 'shared', 'bannerInfo')),
+      getDoc(doc(db, 'shared', 'contactComponent')),
+      getDoc(doc(db, 'promo-videa', 'seo')),
+    ]);
 
   const promoVideaData = promoVideaSnapshot.data();
   const sharedBannerData = sharedBannerSnapshot.data();
   const contactCompData = contactComponentSnapshot.data();
+  const seoData = seoSnapshot.data();
 
   return {
     props: {
@@ -110,6 +113,7 @@ export async function getStaticProps() {
         promoVideaData,
         sharedBannerData,
         contactCompData,
+        seoData,
       },
     },
   };

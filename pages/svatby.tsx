@@ -55,15 +55,18 @@ const Svatby: React.FC<SvatbyProps> = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  const [svatbySnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
-    getDoc(doc(db, 'svatby', 'layout')),
-    getDoc(doc(db, 'shared', 'bannerInfo')),
-    getDoc(doc(db, 'shared', 'contactComponent')),
-  ]);
+  const [svatbySnapshot, sharedBannerSnapshot, contactComponentSnapshot, seoSnapshot] =
+    await Promise.all([
+      getDoc(doc(db, 'svatby', 'layout')),
+      getDoc(doc(db, 'shared', 'bannerInfo')),
+      getDoc(doc(db, 'shared', 'contactComponent')),
+      getDoc(doc(db, 'svatby', 'seo')),
+    ]);
 
   const svatbyData = svatbySnapshot.data();
   const sharedBannerData = sharedBannerSnapshot.data();
   const contactCompData = contactComponentSnapshot.data();
+  const seoData = seoSnapshot.data();
 
   return {
     props: {
@@ -71,6 +74,7 @@ export async function getStaticProps() {
         svatbyData,
         sharedBannerData,
         contactCompData,
+        seoData,
       },
     },
   };

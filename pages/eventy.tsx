@@ -48,15 +48,18 @@ const Eventy: React.FC<SvatbyProps> = ({ data }) => {
 };
 
 export async function getStaticProps() {
-  const [eventySnapshot, sharedBannerSnapshot, contactComponentSnapshot] = await Promise.all([
-    getDoc(doc(db, 'eventy', 'layout')),
-    getDoc(doc(db, 'shared', 'bannerInfo')),
-    getDoc(doc(db, 'shared', 'contactComponent')),
-  ]);
+  const [eventySnapshot, sharedBannerSnapshot, contactComponentSnapshot, seoSnapshot] =
+    await Promise.all([
+      getDoc(doc(db, 'eventy', 'layout')),
+      getDoc(doc(db, 'shared', 'bannerInfo')),
+      getDoc(doc(db, 'shared', 'contactComponent')),
+      getDoc(doc(db, 'eventy', 'seo')),
+    ]);
 
   const eventyData = eventySnapshot.data();
   const sharedBannerData = sharedBannerSnapshot.data();
   const contactCompData = contactComponentSnapshot.data();
+  const seoData = seoSnapshot.data();
 
   return {
     props: {
@@ -64,6 +67,7 @@ export async function getStaticProps() {
         eventyData,
         sharedBannerData,
         contactCompData,
+        seoData,
       },
     },
   };

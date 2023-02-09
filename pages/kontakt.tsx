@@ -58,7 +58,7 @@ const Kontakt = () => {
     <Background>
       <Container customStyles="sharedLayout min-h-screen">
         <div className="flex flex-col gap-5">
-          <h2 className="title">Kontakt</h2>
+          <h1 className="title">Kontakt</h1>
           <p>
             Pokud si chcete objednat služby nebo se na cokoliv zeptat, můžete využít kontaktní
             formulář níže.

@@ -72,7 +72,7 @@ export async function getStaticProps() {
     props: {
       data: {
         squareData: squareData?.content,
-        seoData: seoData,
+        seoData,
       },
     },
   };
