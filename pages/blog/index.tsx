@@ -1,18 +1,22 @@
+import { doc, getDoc } from 'firebase/firestore';
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import Background from '../../components/Layouts/Background';
 import Container from '../../components/Layouts/Container';
+import ContactMe from '../../components/Shared/ContactMe';
 import Tags from '../../components/Shared/Tags';
-import { BlogPost } from '../../types/firebaseTypes';
+import { db } from '../../firebase';
+import { BlogPost, ContactComponent } from '../../types/firebaseTypes';
 import { getPublishedPosts } from '../../utils/firebaseUtils';
 
 interface BlogProps {
   allPosts: BlogPost[];
+  contactData: ContactComponent;
 }
 
-const Blog: React.FC<BlogProps> = ({ allPosts }) => {
+const Blog: React.FC<BlogProps> = ({ allPosts, contactData }) => {
   return (
     <>
       <NextSeo title="Blog" />
@@ -54,6 +58,12 @@ const Blog: React.FC<BlogProps> = ({ allPosts }) => {
               </>
             )}
           </div>
+
+          <ContactMe
+            title={contactData.title}
+            buttonText={contactData.buttonText}
+            description={contactData.description}
+          />
         </Container>
       </Background>
     </>
@@ -62,10 +72,14 @@ const Blog: React.FC<BlogProps> = ({ allPosts }) => {
 
 export async function getStaticProps() {
   const allPosts = await getPublishedPosts();
+  const contactSnapshot = await getDoc(doc(db, 'shared', 'contactComponent'));
+
+  const contactData = contactSnapshot.data();
 
   return {
     props: {
       allPosts,
+      contactData,
     },
   };
 }
